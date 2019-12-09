@@ -1,0 +1,158 @@
+=================================================
+4.
+
+
+inputstr1 = ["[","{","("] 
+inputstr2 = ["]","}",")"] 
+  
+def check_parentheses(Str): 
+    stack = [] 
+    for i in Str: 
+        if i in inputstr1: 
+            stack.append(i) 
+        elif i in inputstr2: 
+            pos = inputstr2.index(i) 
+            if ((len(stack) > 0) and
+                (inputstr1[pos] == stack[len(stack)-1])): 
+                stack.pop() 
+            else: 
+                return "False"
+    if len(stack) == 0: 
+        return "True"
+  
+string = "{[]{()}}"
+print(string,"-", check_parentheses(string)) 
+  
+string = "[{}{})(]"
+print(string,"-", check_parentheses(string)) 
+
+
+====================================================
+
+5.
+
+class solution:
+    def int_roman(self, num):
+
+        value = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4,1]
+
+        syb = ["M", "CM", "D", "CD","C", "XC", "L", "XL","X", "IX", "V", "IV","I"]
+        roman_num = ''
+        i = 0
+        while  num > 0:
+            for _ in range(num // value[i]):
+                roman_num += syb[i]
+                num -= value[i]
+            i += 1
+        return roman_num
+
+print(solution().int_roman(5))
+
+======================================================
+
+7
+
+import re
+def check_password_strength(self):
+p= input("Input your password")
+x = True
+    while x:  
+        if (len(p)>=8):
+            break
+        elif not re.search("[a-z]",p):
+            break
+        elif not re.search("[0-9]",p):
+            break
+        elif not re.search("[A-Z]",p):
+            break
+        elif not re.search("[!$#@&]",p):
+            break
+        elif re.search("\s",p):
+            break
+        else:
+            print("strength of your password is good")
+
+            x=False
+            break
+    if x:
+        print("Your password is weak:password should contain at least 1 capital letter,1 digit,1 special character,and allowed special characters are (!,@,#,$,&)")
+check_password_strength()  
+
+=========================================================================
+9.
+
+def greatest_sub_array(a, k, n): 
+    arr=[] 
+ 
+    for i in range(n-k+1): 
+        temp=[] 
+
+        for j in range(i,i+k): 
+            temp.append(a[j]) 
+
+        arr.append(temp) 
+        arr=sorted(arr) 
+        return arr[len(arr) - 1]  
+a =[ 1, 4, 3, 2, 5 ] 
+k = 4
+n = len(a)
+ 
+ans = greatest_sub_array(a, k, n)
+ans2 = greatest_sub_array(a[1:], k, n)
+for i in range(0,k):
+    if ans[i]> ans2[i]:
+        print(ans)
+        break
+    if ans[i]<ans2[i]:
+        print(ans2)
+        break
+    i =i+1
+========================================================================
+8
+
+def checkSentence(string): 
+    length = len(string) 
+  
+    if string[0] < 'A' or string[0] > 'Z': 
+        return False
+  
+   
+    if string[length-1] != '.': 
+        return False
+  
+ 
+    prev_state = 0
+    curr_state = 0
+ 
+    index = 1 
+    while (string[index]): 
+        if string[index] >= 'A' and string[index] <= 'Z': 
+            curr_state = 0
+        elif string[index] == ' ': 
+            curr_state = 1
+        elif string[index] >= 'a' and string[index] <= 'z': 
+            curr_state = 2
+        elif string[index] == '.': 
+            curr_state = 3
+        if prev_state == curr_state and curr_state != 2: 
+            return False
+        if prev_state == 2 and curr_state == 0: 
+            return False 
+        if curr_state == 3 and prev_state != 1: 
+            return True
+        index += 1
+  
+        prev_state = curr_state 
+  
+    return False 
+string = input("enter string")
+if checkSentence(string): 
+    print ("\"" +  string + "\" is correct")
+else: 
+    print ("\"" + string + "\" is incorrect")
+
+==============================================================================================================================
+
+
+
+

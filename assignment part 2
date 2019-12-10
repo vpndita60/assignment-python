@@ -1,0 +1,144 @@
+import re
+pre_smartphone = {2:['a','b','c'],3:['d','e','f'],4:['g','h','i'],
+                  5:['j','k','l'],6:['m','n','o'],7:['p','q','r','s'],
+                  8:['t','u','v'],9:['w','x','y','z']}
+
+def numbers_to_chars(key):
+    key = str(key)
+    result = ""
+    while key:
+        ch = key[0]
+        pattern = re.compile('{}+'.format(ch))
+        match = re.search(pattern,key)
+        result = result+pre_smartphone[int(ch)][len(match.group())-1]
+        key = key.replace(match.group(),"",1)
+    return result
+    
+
+key = 9999335533 #taking integer input
+result = numbers_to_chars(key) #calling function 
+
+print(result)
+
+
+===========================================================
+
+
+travel_route = {"Chennai":"Banglore","Bombay":"Delhi","Goa":"Chennai","Delhi":"Goa"} #input
+
+def route(place):
+    count = 0
+    dic = {}
+    while place in travel_route:
+        count+=1
+        dic.setdefault(place,travel_route[place])
+        place = travel_route[place]
+    return count,dic
+        
+
+def travel_sequence(travel_route):
+    for place in travel_route:
+        count,result = route(place)
+        if count == len(travel_route):
+            return result
+
+result = travel_sequence(travel_route) #output()
+
+for from_place,to in result.items():
+    if list(result.keys())[-1] == from_place:
+        print("{}->{}".format(from_place,to),end="")
+    else:   
+        print("{}->{}".format(from_place,to),end=", ")
+
+===================================================================
+
+states = {'New Hampshire': ['Concord', 'Hanover'],
+
+'Massachusetts': ['Boston', 'Concord', 'Springfield'],
+
+'Illinois': ['Chicago', 'Springfield', 'Peoria'] }
+
+def city_with_states(unique_city_names):
+    city_dic = {}
+    for city in unique_city_names:
+        city_dic[city] = []
+        for state in states:
+            if city in states[state]:
+                city_dic[city].append(state)
+    return city_dic
+                
+
+city_list_objects = list(states.values())
+l2 = [j for i in l1 for j in i]
+unique_city_names = list(set(l2))
+
+
+result = city_with_states(unique_city_names)
+
+print(result)
+
+==========================================================================
+
+import re
+input_code = """
+#Linear search implementation
+#Takes list and a key as input and returns True or False as answer
+def linear_saerch(l,key):
+    for value in l:
+        if key == value:
+            return True #Return True is key exist
+    else:
+        return False #Return False if key does not exist
+
+l = [100,200,300,400,500,600]
+key = 500
+result = linear_search(l,key)
+print(result)
+"""
+def count_code_lines(line):
+    string = line.lstrip()
+    pattern = re.compile('^\w+')
+    match = re.search(pattern,string)
+    if match:
+        return 1
+    else:
+        return 0
+
+
+count = 0
+for line in input_code.split("\n"):
+     count+=count_code_lines(line)
+print(count)
+
+===================================================================
+def adj_sum_even(numbers):
+    even = []
+    odd = []
+    for i in numbers:
+        if i % 2 == 0:
+            even.append(i)
+        else:
+            odd.append(i)
+    if len(even) > len(odd):
+        return (len(odd),even)
+    else:
+        return (len(even),odd)
+
+numbers = [1,3,5,4,2]
+
+result = adj_sum_even(numbers)
+
+print("{}".format(result))
+=================================================================
+
+
+
+
+
+
+
+
+
+
+
+
